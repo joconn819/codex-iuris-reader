@@ -50,7 +50,9 @@ The importer caches source HTML in `.cache/`; remove that directory before delib
 - `dist/index.html`, `styles.css`, `app.js`: accessible responsive interface.
 - `dist/engine.js`: indexing, lookup, filtering, and CSV serialization.
 - `dist/data/corpus.json`: complete aligned texts and contextual linguistic annotations.
+- `dist/data/latin-glosses.json`: concise English dictionary glosses keyed by normalized Latin lemma.
 - `scripts/build_corpus.py`: reproducible data ingestion and preprocessing.
+- `scripts/build_english_glosses.py`: builds the static English glossary from the pinned LatinCy lexicon package.
 - `tests/engine.test.mjs`: data and concordance integrity tests.
 
 ### Editorial handling
@@ -64,6 +66,12 @@ The Vatican English pages contain Latin amendments in canons 111, 112, and 868. 
 The live site is published from `dist/` using the workflow in `.github/workflows/pages.yml`. Push changes to `dist/` on `main` to publish an update. The GitHub Pages address is `https://joconn819.github.io/codex-iuris-reader/`.
 
 GitHub Pages requires a public repository for accounts on the GitHub Free plan. The bundled Code texts and source files in this repository are therefore publicly visible. See Sources & method in the reader and the source links for text provenance and translation notes.
+
+## English glosses
+
+The focused overrides are recorded in `scripts/english_gloss_overrides.json`. To regenerate the glossary after rebuilding the corpus, install `scripts/gloss-requirements.txt` and run `python3 scripts/build_english_glosses.py`.
+
+The frequency lists show concise English glosses for Latin headwords; exact-spelling counts use the glosses of their predicted lemma or lemmas. They combine dictionary data with focused gloss overrides for common legal and grammatical terms. Where no gloss is available, the list links to the English canon context. These glosses are not context-selected translations, so a gloss may not fit every occurrence. The dictionary data is derived from [Whitaker’s Words](https://mk270.github.io/whitakers-words/) and [Lewis & Short](https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0059), packaged through [LatinCy’s lexicon project](https://github.com/latincy/latincy-lexicon). Whitaker’s data is freely reusable and asks that its source be credited; Lewis & Short was published in 1879 and the digitized source is provided by the Perseus Digital Library.
 
 ## Latin word index
 
