@@ -25,7 +25,7 @@
 <label class="control-label">FREQUENCY SCOPE<select id="wordScope" aria-label="Frequency scope"><option value="0">Entire Code</option></select></label>
 <label class="control-label">WORD GROUPING<select id="wordMode" aria-label="Word grouping"><option value="lemma">Group inflections</option><option value="form">Exact forms</option></select></label>
 <label class="control-label">SORT BY<select id="wordSort" aria-label="Sort word list"><option value="frequency">Most to least common</option><option value="alphabetical">Alphabetical</option></select></label>
-<label class="control-label">PART OF SPEECH<select id="wordPos" aria-label="Filter by part of speech"><option value="">All parts of speech</option></select></label>
+<div class="control-label pos-control"><span>PART OF SPEECH</span><details class="pos-multiselect" id="wordPosMenu"><summary id="wordPosSummary">All parts of speech</summary><div class="pos-menu"><div class="pos-options" id="wordPosOptions" role="group" aria-label="Select one or more parts of speech"></div><button class="pos-clear" id="clearPos" type="button">Clear selection · show all</button></div></details></div>
 </section>
 <p id="wordHint" class="word-hint">Loading the Latin index…</p>
 <div class="word-table-wrap"><table class="word-table"><thead><tr><th scope="col">RANK</th><th scope="col">LATIN TERM / ENGLISH GLOSS</th><th scope="col">PART OF SPEECH</th><th scope="col">ATTESTED FORMS</th><th scope="col" class="numeric">OCCURRENCES</th></tr></thead><tbody id="wordRows"><tr><td colspan="5" class="table-loading">Preparing the word index…</td></tr></tbody></table></div>
