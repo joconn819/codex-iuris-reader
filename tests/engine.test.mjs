@@ -11,10 +11,16 @@ test('Every canon has both languages and valid, non-overlapping Latin token offs
 test('Irregular noun declensions and verb conjugations are grouped',()=>{
  for(const [lemma,forms] of [['lex',['lex','leges','legibus']],['sum',['est','sunt','sit']],['ius',['ius','iuris','iure']]]){const found=index.lemmas.get(lemma);assert.ok(found,lemma);for(const f of forms)assert.ok(found.forms.has(f),`${lemma} should include ${f}`);}
 });
-test('Context-specific correction keeps preposition ab under one part of speech',()=>{
- const entry=index.lemmas.get('ab');assert.ok(entry);assert.equal(entry.pos.size,1);assert.ok(entry.pos.has('ADP'));
- const token=corpus.canons[394].tokens.find(t=>corpus.canons[394].la.slice(t[0],t[1])==='A');
- assert.ok(token);assert.equal(token[2],'ab');assert.equal(token[3],'ADP');
+test('Context-specific token corrections repair confirmed part-of-speech and lemma errors',()=>{
+ const tokenAt=(canon,form,following)=>{const c=corpus.canons[canon-1],matches=c.tokens.filter(t=>c.la.slice(t[0],t[1])===form&&c.la.slice(t[1]).startsWith(following));assert.equal(matches.length,1);return matches[0];};
+ const a=tokenAt(395,'A',' dioecesi ne absit');assert.deepEqual(a.slice(2,4),['ab','ADP']);
+ const pro=tokenAt(899,'pro',' ordinum et liturgicorum munerum');assert.equal(pro[3],'ADP');
+ const debiti=tokenAt(1284,'debiti',' summam capitalem opportune reddendam');assert.deepEqual(debiti.slice(2,4),['debitum','NOUN']);
+ const sibi=tokenAt(1308,'Sibi',' in tabulis fundationum id expresse caveatur');assert.deepEqual(sibi.slice(2,4),['sui','PRON']);
+ assert.deepEqual([...index.lemmas.get('ab').pos],['ADP']);
+ assert.deepEqual([...index.lemmas.get('pro').pos],['ADP']);
+ assert.deepEqual([...index.lemmas.get('debeo').pos],['VERB']);
+ assert.ok(!index.lemmas.get('sui').pos.has('NOUN'));
 });
 test('Frequency, form totals, and concordance counts agree across all books',()=>{
  const total=corpus.canons.reduce((n,c)=>n+c.tokens.length,0);

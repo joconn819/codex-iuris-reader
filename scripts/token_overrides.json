@@ -6,5 +6,28 @@
       "lemma": "ab",
       "pos": "ADP"
     }
+  ],
+  "899": [
+    {
+      "form": "pro",
+      "following": " ordinum et liturgicorum munerum",
+      "pos": "ADP"
+    }
+  ],
+  "1284": [
+    {
+      "form": "debiti",
+      "following": " summam capitalem opportune reddendam",
+      "lemma": "debitum",
+      "pos": "NOUN"
+    }
+  ],
+  "1308": [
+    {
+      "form": "Sibi",
+      "following": " in tabulis fundationum id expresse caveatur",
+      "lemma": "sui",
+      "pos": "PRON"
+    }
   ]
 }
