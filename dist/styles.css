@@ -7,3 +7,5 @@
 .site-nav{display:flex;align-items:center}.masthead .site-link{color:#eee9db;text-decoration:none}.masthead .site-link:hover{color:#e1c895}.word-index-shortcut{display:block;margin-top:13px;color:#65795d;font-size:10px;text-decoration:none}.word-index-shortcut:hover{text-decoration:underline;text-underline-offset:3px}
 
 .entry .entry-gloss{color:#566b52;font-size:11px;line-height:1.4;margin-top:5px;max-width:230px;white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}.entry .entry-gloss:first-letter{text-transform:lowercase}
+
+.lemma-gloss{margin:8px 0 2px;color:#65795d;font:italic 14px/1.5 Georgia,serif}
