@@ -58,3 +58,9 @@ The importer caches source HTML in `.cache/`; remove that directory before delib
 The importer keeps the first main-text occurrence of each canon on a page and excludes repeated historical versions and bracketed amendment citations from the word counts. It retains source wording and typographical errors. Common ecclesiastical noun forms receive explicit corrections from `scripts/lemma_overrides.json`; these improve lemma grouping without claiming a full manual review. Morphological features remain model predictions.
 
 The Vatican English pages contain Latin amendments in canons 111, 112, and 868. This reader supplies its own clearly labeled English study translations for these three canons in `scripts/english_supplements.json`, based on the imported Latin. These are not an official translation. Other English pages may lag behind amendments in the Latin; verify the linked sources for legal use.
+
+## GitHub Pages
+
+The live site is published from `dist/` using the workflow in `.github/workflows/pages.yml`. Push changes to `dist/` on `main` to publish an update. The GitHub Pages address is `https://joconn819.github.io/codex-iuris-reader/`.
+
+GitHub Pages requires a public repository for accounts on the GitHub Free plan. The bundled Code texts and source files in this repository are therefore publicly visible. See Sources & method in the reader and the source links for text provenance and translation notes.
