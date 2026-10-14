@@ -64,3 +64,7 @@ The Vatican English pages contain Latin amendments in canons 111, 112, and 868. 
 The live site is published from `dist/` using the workflow in `.github/workflows/pages.yml`. Push changes to `dist/` on `main` to publish an update. The GitHub Pages address is `https://joconn819.github.io/codex-iuris-reader/`.
 
 GitHub Pages requires a public repository for accounts on the GitHub Free plan. The bundled Code texts and source files in this repository are therefore publicly visible. See Sources & method in the reader and the source links for text provenance and translation notes.
+
+## Latin word index
+
+Open the [live Latin word index](https://joconn819.github.io/codex-iuris-reader/words.html) to browse words in frequency order, search the Latin word list, scope counts to a book, switch between grouped lemmas and exact spellings, sort alphabetically, and export filtered results as CSV. Selecting a row opens the parallel reader at the word’s canon contexts.
