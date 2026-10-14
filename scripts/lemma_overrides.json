@@ -334,5 +334,9 @@
   "clericos": [
     "clericus",
     "NOUN"
+  ],
+  "leges": [
+    "lex",
+    "NOUN"
   ]
 }
