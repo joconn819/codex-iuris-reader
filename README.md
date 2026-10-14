@@ -59,7 +59,7 @@ The importer caches source HTML in `.cache/`; remove that directory before delib
 
 ### Editorial handling
 
-The importer keeps the first main-text occurrence of each canon on a page and excludes repeated historical versions and bracketed amendment citations from the word counts. It retains source wording and typographical errors. Common ecclesiastical noun forms receive explicit corrections from `scripts/lemma_overrides.json`; these improve lemma grouping without claiming a full manual review. Morphological features remain model predictions.
+The importer keeps the first main-text occurrence of each canon on a page and excludes repeated historical versions and bracketed amendment citations from the word counts. It retains source wording and typographical errors. Common ecclesiastical noun forms receive explicit corrections from `scripts/lemma_overrides.json`. Context-specific lemma or part-of-speech corrections for individual tokens are recorded in `scripts/token_overrides.json`; these address confirmed model errors without changing other occurrences of the same spelling. Morphological features remain model predictions.
 
 The Vatican English pages contain Latin amendments in canons 111, 112, and 868. This reader supplies its own clearly labeled English study translations for these three canons in `scripts/english_supplements.json`, based on the imported Latin. These are not an official translation. Other English pages may lag behind amendments in the Latin; verify the linked sources for legal use.
 

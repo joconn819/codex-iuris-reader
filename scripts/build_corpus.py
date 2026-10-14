@@ -90,6 +90,7 @@ if __name__=='__main__':
     def norm(s):
         return ''.join(c for c in unicodedata.normalize('NFD',s.lower()) if not unicodedata.combining(c)).replace('j','i')
     overrides=json.loads((ROOT/'scripts/lemma_overrides.json').read_text())
+    token_overrides=json.loads((ROOT/'scripts/token_overrides.json').read_text())
     for c,doc in zip(canons,nlp.pipe((c['la'] for c in canons),batch_size=32)):
         # LatinCy normalizes u/v and whitespace; remap tokens to untouched source text.
         source=norm(c['la']).replace('v','u'); cursor=0; c['tokens']=[]
@@ -104,7 +105,13 @@ if __name__=='__main__':
                 form=norm(c['la'][offset:cursor]); override=overrides.get(form)
                 c['tokens'].append([offset,cursor,override[0] if override else norm(t.lemma_),override[1] if override else t.pos_,str(t.morph)])
         assert not any(x.isalpha() for x in source[cursor:]), (c['n'],'Unmapped tail')
+        for correction in token_overrides.get(str(c['n']), []):
+            matches=[t for t in c['tokens'] if c['la'][t[0]:t[1]]==correction['form'] and c['la'][t[1]:].startswith(correction['following'])]
+            assert len(matches)==1, (c['n'],correction,len(matches))
+            token=matches[0]
+            token[2]=correction.get('lemma',token[2])
+            token[3]=correction['pos']
         if c['n']%200==0: print('Lemmatized',c['n'],flush=True)
-    data={'meta':{'title':'Code of Canon Law (1983)','retrieved':datetime.date.today().isoformat(),'edition':'Vatican website snapshot; individual language pages may incorporate amendments at different times. Not a certified consolidated edition.','model':'LatinCy la_core_web_sm '+nlp.meta['version']+' with canon-law noun overrides','lemmaNote':'Contextual machine lemmatization. Inflections, including noun declensions and verb conjugations, are grouped by predicted dictionary headword. Predictions can be wrong, especially for ambiguous and ecclesiastical forms.','sources':urls},'books':[{'id':i+1,'start':b[0],'end':b[1],'en':b[2],'la':b[3]} for i,b in enumerate(BOOKS)],'canons':canons}
+    data={'meta':{'title':'Code of Canon Law (1983)','retrieved':datetime.date.today().isoformat(),'edition':'Vatican website snapshot; individual language pages may incorporate amendments at different times. Not a certified consolidated edition.','model':'LatinCy la_core_web_sm '+nlp.meta['version']+' with lemma and token overrides','lemmaNote':'Contextual machine lemmatization. Inflections, including noun declensions and verb conjugations, are grouped by predicted dictionary headword. Predictions can be wrong, especially for ambiguous and ecclesiastical forms.','sources':urls},'books':[{'id':i+1,'start':b[0],'end':b[1],'en':b[2],'la':b[3]} for i,b in enumerate(BOOKS)],'canons':canons}
     out=ROOT/'dist/data/corpus.json'; out.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':')))
     print('Saved',out,out.stat().st_size,flush=True)

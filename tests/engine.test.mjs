@@ -11,6 +11,11 @@ test('Every canon has both languages and valid, non-overlapping Latin token offs
 test('Irregular noun declensions and verb conjugations are grouped',()=>{
  for(const [lemma,forms] of [['lex',['lex','leges','legibus']],['sum',['est','sunt','sit']],['ius',['ius','iuris','iure']]]){const found=index.lemmas.get(lemma);assert.ok(found,lemma);for(const f of forms)assert.ok(found.forms.has(f),`${lemma} should include ${f}`);}
 });
+test('Context-specific correction keeps preposition ab under one part of speech',()=>{
+ const entry=index.lemmas.get('ab');assert.ok(entry);assert.equal(entry.pos.size,1);assert.ok(entry.pos.has('ADP'));
+ const token=corpus.canons[394].tokens.find(t=>corpus.canons[394].la.slice(t[0],t[1])==='A');
+ assert.ok(token);assert.equal(token[2],'ab');assert.equal(token[3],'ADP');
+});
 test('Frequency, form totals, and concordance counts agree across all books',()=>{
  const total=corpus.canons.reduce((n,c)=>n+c.tokens.length,0);
  assert.equal([...index.lemmas.values()].reduce((n,e)=>n+e.occurrences.length,0),total);
