@@ -2,6 +2,8 @@
 
 A browser-based parallel reader for all 1,752 canons of the 1983 Code of Canon Law, with a Latin concordance.
 
+This website was vibe-coded using [Codex](https://openai.com/codex/).
+
 ## Run
 
 ```sh
