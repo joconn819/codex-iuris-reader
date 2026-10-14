@@ -1,0 +1,6 @@
+.venv/
+.nlp/
+.cache/
+node_modules/
+*.tar.gz
+__pycache__/

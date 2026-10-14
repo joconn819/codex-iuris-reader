@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#203e37"><meta name="description" content="Read the Code of Canon Law in Latin and English. Explore Latin word families, frequencies, and every occurrence."><title>Codex Iuris · Parallel reader</title><link rel="stylesheet" href="styles.css"><script type="module" src="app.js"></script></head>
+<body>
+<header class="masthead"><a class="brand" href="#canon=1"><span class="emblem" aria-hidden="true">§</span><span>Codex Iuris<small>THE CANON LAW READER</small></span></a><div class="edition">1983 CODE OF CANON LAW <span>LATIN · ENGLISH</span></div><button class="quiet" id="aboutButton">Sources & method ↗</button></header>
+<div class="workspace">
+<aside class="library"><div class="eyebrow">THE CODE</div><h2>Seven books.<br>One reference.</h2><nav id="books" aria-label="Books of the Code"></nav><div class="library-note"><span class="small-cross">✧</span><p>Read in parallel.<br>Explore the Latin.</p><small>Click any Latin word to follow its uses across the Code.</small></div></aside>
+<main>
+<section class="reader-heading"><div><div class="eyebrow" id="bookLabel">PARALLEL READER</div><h1 id="bookTitle">Code of Canon Law</h1><p id="bookLatin">Codex Iuris Canonici</p></div><form id="jumpForm"><label for="canonInput">GO TO CANON</label><div class="jump"><input id="canonInput" type="number" min="1" max="1752" value="1" required aria-label="Canon number"><button type="submit" aria-label="Go to canon">↵</button></div></form></section>
+<div class="reader-toolbar"><div><span class="live-dot"></span> Aligned by canon</div><div class="text-size"><button id="smaller" aria-label="Decrease text size">A−</button><button id="larger" aria-label="Increase text size">A+</button></div></div>
+<div class="language-head"><span>LATIN <small>Textus Latinus</small></span><span>ENGLISH <small>Translation</small></span></div>
+<div id="reader" aria-busy="true"><div class="loading">Preparing your reading desk…</div></div>
+<footer class="reader-footer"><button id="previous" class="quiet">← Previous</button><span id="range"></span><button id="next" class="quiet">Next →</button></footer>
+</main>
+<aside class="analysis" aria-label="Latin concordance"><div class="analysis-top"><div class="eyebrow">LATIN CONCORDANCE</div><h2>Follow the word.</h2><p>Every form. Every occurrence.</p><label class="search"><span aria-hidden="true">⌕</span><input id="wordSearch" type="search" placeholder="Find a Latin word or lemma…" aria-label="Find a Latin word or lemma"></label><div class="filters"><select id="scope" aria-label="Frequency scope"><option value="0">Entire Code</option></select><select id="mode" aria-label="Word grouping"><option value="lemma">Group inflections</option><option value="form">Exact forms</option></select></div></div>
+<div id="analysisContent" aria-live="polite"><p class="muted">Loading the Latin index…</p></div>
+<div class="analysis-footer">Latin-based counts · Machine-assisted lemmas <button id="methodButton" aria-label="About word grouping">ⓘ</button></div></aside>
+</div>
+<dialog id="about"><button class="close" id="closeAbout" aria-label="Close sources and method">×</button><div class="eyebrow">THE READING DESK</div><h2>Sources & method</h2><div id="aboutContent"></div></dialog>
+<noscript>This reader needs JavaScript to align the texts and search the Latin index.</noscript>
+</body></html>
